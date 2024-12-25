@@ -35,7 +35,7 @@ python paper_cutting_game.py
 
 ### Generating expert demos
 Generate demos with heuristic oracle policy:
-```console
+```
 python policy/generate_demos_high_level.py \
     setup.cuda=1 demos.curve_type=two_peak  \
     demos.angle_slot=5.73 demos.max_num=1000
@@ -48,7 +48,7 @@ python dagger/prepare_offline.py -d SRC_DATA_PATH -o OUTPUT_PATH -g $GPU -p 1
 
 ## Training
 ### Train our imitation learning policy
-```console
+```
 python dagger/bc_delta.py -b 48 \
 -tp TRAIN_FOLDER_NAME -ep VAL_FOLDER_NAME \
 -lvb 0.07 -s 140000 -y ./config/rl/bc_8d_no_pose.yaml \
