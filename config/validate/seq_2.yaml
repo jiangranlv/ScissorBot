@@ -1,0 +1,18 @@
+defaults:
+  - base_config
+exp_name: seq_2
+policy: MultiFrameBC
+gpu: 0
+
+net_cfg:
+  checkpoint_path: /data1/jiangranlv/code/cutting_paper_fem/rloutputs/exp/seq_2/version_1/checkpoints/epoch=21-step=140000.ckpt
+  model_yaml_path: /data1/jiangranlv/code/cutting_paper_fem/rloutputs/exp/seq_2/version_1/model_config.yaml
+  seq_len: 2
+  pose_dim: 6
+  gpuid: 0
+
+
+val_set: /home/jiangranlv/code/cutting_paper_fem/test_val_set.txt
+
+
+

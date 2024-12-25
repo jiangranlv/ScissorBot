@@ -1,0 +1,19 @@
+# testers
+*test*
+*check*
+*tmp*
+*backup*
+
+# outputs
+*output*
+*bin*
+
+# cache file
+*vscode*
+*__pycache__*
+*imgui.ini*
+*.cache*
+*.convex.*
+
+# do some special work
+tool.py

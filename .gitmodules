@@ -1,0 +1,15 @@
+[submodule "external/yourdfpy"]
+	path = external/yourdfpy
+	url = https://gitee.com/chen01yx/yourdfpy.git
+[submodule "external/mesh_to_sdf"]
+	path = external/mesh_to_sdf
+	url = https://gitee.com/chen01yx/mesh_to_sdf.git
+[submodule "external/eigen"]
+	path = external/eigen
+	url = https://gitlab.com/libeigen/eigen.git
+[submodule "external/emd"]
+	path = external/emd
+	url = https://gitee.com/chen01yx/PyTorchEMD.git
+[submodule "external/batch_urdf"]
+	path = external/batch_urdf
+	url = https://gitee.com/chen01yx/batch_urdf.git

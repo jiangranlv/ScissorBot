@@ -1,0 +1,15 @@
+defaults:
+  - base_config
+exp_name: tracking_two_peak
+policy: Tracking
+gpu: 0
+
+net_cfg:
+  checkpoint_path: /home/jiangranlv/code/cutting_paper_fem/rloutputs/exp/delta_noise/version_1/checkpoints/epoch=21-step=140000.ckpt
+  model_yaml_path: /home/jiangranlv/code/cutting_paper_fem/rloutputs/exp/delta_noise/version_1/model_config.yaml
+  seq_len: 4
+  pose_dim: 6
+  gpuid: 0
+
+
+val_set: /home/jiangranlv/code/cutting_paper_fem/two_peak_val_set.txt

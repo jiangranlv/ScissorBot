@@ -1,0 +1,49 @@
+
+feat_dim: 128
+action_loss_cfg:
+  rotation_dim: 18
+  probability_weight: 0
+  open_close_weight: 1e0
+  translation_weight: 1e0
+  rotation_weight: 1e0
+  open_close_loss: l2
+  translation_loss: huber
+  rotation_loss: l1
+
+action_detokenizer_cfg:
+  cls_head_cfg: 
+    hidden_dim: []
+  rot_head_cfg:
+    hidden_dim: [64, 64]
+    act_func: leaky_relu
+  trans_head_cfg:
+    hidden_dim: [64, 64]
+  open_head_cfg:
+    hidden_dim: [64, 64]
+  close_head_cfg:
+    hidden_dim: [64, 64]
+
+input_statistics: # old statistics
+  point_cloud:
+    mean: [0.08134385, 0.0046094, 0.15284023, 0.]
+    std: [0.0735828, 0.0735828, 0.0735828, 1.]
+  scissor_pose:
+    mean: [-0.09131761, 0.02888361, 0.03622385, 0.14638498, 0.16358851, 0.0074226, 0.16835716, 0.14005724]
+    std: [0.18268688, 0.10507938, 0.12708044, 0.0675601, 0.19768135, 0.20669429, 0.6547538, 0.6439879 ]
+  action:
+    translation:
+      mean: [0.03259763, -0.00670006, 0.00247545]
+      std: [0.04390685, 0.04390685, 0.04390685]
+  front_point:
+    mean: [0.073998,-0.002241 ,0.162374]
+    std: [0.052029,0.004336,0.009971]
+  cut_direction:
+    mean: [0.947454,-0.046601,0.020884]
+    std: [0.057117,0.100484,0.293878]
+  next_edge:
+    a:
+      mean: [0.076762,-0.002724,0.162387]
+      std: [0.053300,0.012590,0.015409]
+    b:
+      mean: [0.100298,-0.003954,0.162927]
+      std: [0.052922,0.006711,0.011152]

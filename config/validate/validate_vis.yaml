@@ -1,0 +1,56 @@
+defaults:
+  - base_config
+exp_name: debug
+policy: Tracking
+gpu: 0
+gym_cfg:
+  output:
+    models:
+      xgame:
+        cloth: False
+        scissor: False
+        robot: False
+        endeffector: False
+      # xgame_scissor: 
+      #   cloth: False
+      #   scissor: True
+      #   robot: False
+      #   endeffector: True
+      # xgame_cloth:
+      #   cloth: True
+      #   scissor: False
+      #   robot: False
+      #   endeffector: False
+      xgame_scissor: 
+        cloth: False
+        scissor: True
+        robot: False
+        endeffector: True
+      xgame_cloth:
+        cloth: True
+        scissor: False
+        robot: False
+        endeffector: False
+
+    is_write_uv: True
+    uv_prefix: cloth
+    use_ascii: False
+    print_stuck: False
+
+  env:
+    batch_size: 1
+    cut_sim:
+      frame_dt: 5e-2
+
+net_cfg:
+  checkpoint_path: /home/jiangranlv/code/cutting_paper_fem/rloutputs/exp/delta_noise/version_1/checkpoints/epoch=21-step=140000.ckpt
+  model_yaml_path: /home/jiangranlv/code/cutting_paper_fem/rloutputs/exp/delta_noise/version_1/model_config.yaml
+  seq_len: 4
+  pose_dim: 6
+  gpuid: 0
+
+
+val_set: /home/jiangranlv/code/cutting_paper_fem/vis_val_set.txt
+
+
+

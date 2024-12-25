@@ -1,0 +1,117 @@
+setup:
+  cuda: 0,1,2,3,4,5,6,7
+  arch: cuda
+  device_memory_GB: 1.0
+
+  debug: True
+  kernel_profiler: True
+  offline_cache: True
+
+  max_frame_i: 300
+
+env:
+  cut_sim:
+    frame_dt: 5e-2
+    dt: 5e-3
+    vel_damping1: 0.5
+    position_bounds: [[-0.2, -0.2, -0.5], [1.0, 1.0, 0.5]]
+
+    use_implicit_integral: True
+    hess_coeff: 1.0
+
+    solver_type: CG # cholmod or CG
+    
+    CG_max_iter: 16
+    CG_dx_tol: 1e-3
+    CG_init_zero: True
+    CG_precond: Jacobi # IncompleteCholesky or Jacobi
+    CG_iter_block_n: 8 # (recommend) 1 or 8
+    CG_init_remain_velocity: 1.0
+
+    barrier_width: 2e-3
+    barrier_strength: 1e7
+    barrier_param1: 3.0
+    collision_sample_dx: 5e-4
+
+    cut_sample_dx: 2e-4
+
+    cut_barrier_width: 2e-3
+    cut_threshold: 1e-3
+
+    cut_insert_min_length: 4e-3
+    cut_move_min_length: 3e-3
+
+    # in scissor frame, spatial range in which insert operation can occur
+    blade_insert_half_width: 4e-3
+
+    # in scissor frame, spatial range in which fractures can occur
+    blade_cut_half_width: 3e-3
+    
+    topo_check: True
+
+output:
+  is_write_cloth: True
+  use_ascii: False
+
+  save_topo_info: False
+  save_scissor_force_info: False
+  save_A: False
+
+  print_info: True
+  print_time_cost: True
+  print_kernel_info_frame: 40
+    
+cloth:
+  cloth_file: ./assets/square30cm_12mm_ascii.ply
+
+  h: 1e-4
+  rho: 8e2
+
+  E: 5e6
+  nu: 0.2
+  alpha: 2e3
+
+  stretch_relax_t: 2e-2
+  bending_relax_t: 2e-2
+
+  pin_vertex: [0, 1, 3]
+
+scissor:
+  scissor_num: 2
+  directory: ./assets/scissor/10495/
+  urdf_file: mobility.urdf
+
+  init_pose:
+    joint_0: 0.0
+    joint_1: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+  use_sdf_cache: True
+  sdf_cfg:
+    sdf_beta: 0.1
+    sdf_gamma: 0.01
+    sdf_diff: [0.001, 0.0002, 0.001]
+
+  # blade_name=[l0, l1] 
+  # joint_0 connects base and l0
+  # joint_1 connects l0 and l1
+  blade_name: ["link_0", "link_1"]
+
+  nmax_query: 500000
+
+  # similar to lower limit of joint_0, 
+  # cut angle must larger than this value, 
+  # otherwise it is stuck.
+  min_cut_angle: -0.55 
+
+  # specify cut (blade) direction
+  cut_direction: [-1.0, 0.0, 0.0]
+  
+hydra:
+  job:
+    chdir: True
+  run:
+    dir: outputs/${now:%Y-%m-%d}/${now:%H-%M-%S.%f}
+  sweep:
+    dir: multirun/${now:%Y-%m-%d}/${now:%H-%M-%S.%f}
+    subdir: ${hydra.job.num}
+  

@@ -1,0 +1,236 @@
+config_version: "3.0"
+
+setup:
+  cuda: 0,1,2,3,4,5,6,7
+  arch: cuda
+  device_memory_GB: 2
+
+  debug: False
+  kernel_profiler: False
+  offline_cache: True
+  default_gpu_block_dim: 32
+  advanced_optimization: True
+
+  seed: -1
+
+env:
+  batch_size: 2
+  cut_sim:
+    frame_dt: 5e-2
+    dt: 1e-2
+
+    vel_damping1: 0.5
+    position_bounds: [[-1.0, -1.0, -1.0], [1.0, 1.0, 1.0]]
+    max_velocity: 1e0
+
+    use_implicit_integral: True
+    hess_coeff: 1.0
+
+    solver_type: CG # cholmod or CG
+    
+    CG_max_iter: 256
+    CG_dx_tol: 5e-7
+    CG_relative_tol: 1e-2
+    CG_init_zero: True
+    CG_judge_plateau_avg_num: 256
+    CG_restart_threshold: 1e1
+    CG_precond: BlockJacobi # IncompleteCholesky or Jacobi or BlockJacobi
+    # CG_incomplete_cholesky_initial_alpha: 1e-3
+
+    first_cut_backward_tol: 1.0e-2
+    use_last_split_vertex_id: False
+
+    insert_in_plane_tol: 1.0e-3
+    insert_out_plane_tol: 2.0e-3
+
+    cut_min_length: 2.0e-3
+
+    stuck_in_plane_tol: 0.8e-3
+    stuck_out_plane_tol: 2.0e-3
+
+    allow_rotation_when_stuck: True
+    max_scissor_cloth_cut_angle: 1.0
+    
+    topo_check: False
+
+  cut_limit:
+    open_close_max_velocity: 1.0
+    translation_max_velocity: 0.1
+    rotation_max_velocity: 1.0
+
+  cloth_scissor_collision:
+    barrier_width: 1.0e-3
+    barrier_sdf_offset: 0.5e-3
+    barrier_strength: 3e11
+    barrier_param1: 3.0
+    collision_sample_dx: 5e-4
+
+  cloth_endeffector_collision:
+    barrier_width: 2.0e-3
+    barrier_sdf_offset: 0.0e-3
+    barrier_strength: 1e13
+    barrier_param1: 3.0
+    collision_sample_dx: 2e-3
+
+output:
+  models:
+    xgame: 
+      cloth: True
+      scissor: True
+      robot: True
+      endeffector: True
+  # 'models' is a dict
+  # keys are output file names
+  # values specify which components will be exported
+  is_write_uv: False
+  uv_prefix: xgame
+  use_ascii: False
+
+  save_misc_state: False # this include action/constraints
+
+  print_info: True
+  print_kernel_info_frame: 40
+  print_stuck: True
+
+  log:
+    detail: False
+    time: True
+    
+cloth:
+  cloth_file: ./assets/square30cm_15mm_ascii.ply
+
+  h: 1e-4
+  rho: 8e2
+
+  E: 1e7
+  nu: 0.2
+  alpha: 2e3
+
+  stretch_relax_t: 2e-1
+  bending_relax_t: 2e-1
+
+  hess_fix_init_disp: 1e0
+  ldlt_relative_err: 1e-10
+
+  min_vertex_mass: 1e-8
+  dx_eps: 1e-7
+
+  n_vertices_multiplier: 3.0
+  n_edges_multiplier: 3.0
+  n_faces_multiplier: 3.0
+
+  nmax_edges_connect_to_vertex: 60
+  nmax_faces_connect_to_vertex: 60
+
+scissor:
+  directory: ./assets/scissor/10495/
+  urdf_file: mobility.urdf
+
+  torch_dtype: float32
+  torch_device: 'cuda:0'
+
+  # joint_1 = translation + rotation around joint_0
+  init_pose:
+    joint_0: 0.0
+    joint_1: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+  use_sdf_cache: True
+  sdf_file: ./.cache/sdf.npy
+  sdf_cfg:
+    scan_count: 20
+    scan_resolution: 4000
+    sdf_beta: 0.1
+    sdf_gamma: 0.01
+    sdf_diff: [0.001, 0.0002, 0.001]
+
+  use_front_cache: True
+  front_file: ./.cache/front.npy
+  front_cfg:
+    sample_dtheta: 1e-3
+    dx_tol: 1e-4
+    sdf_tol: 1e-4
+    x_lower: 0.0
+    x_upper: 1.0
+    x_shift: 0.0
+    poly_deg: 4
+
+  # blade_name=[l0, l1] 
+  # joint_0 connects l1 and l0
+  # joint_1 connects base and l1
+  blade_name: ["link_0", "link_1"]
+
+  nmax_query: 500000
+
+  # similar to lower limit of joint_0, 
+  # cut angle must larger than this value, 
+  # otherwise it is stuck.
+  min_cut_angle: -0.55 
+
+  # specify cut (blade) direction
+  cut_direction: [-1.0, 0.0, +0.05]
+
+  dx_eps: 1e-7
+  sdf_inf: 1e6
+
+robot:
+  use_robot: True
+  
+  directory: ./assets/robot/ur10e/
+  urdf_file: ur10e.urdf
+
+  base_joint: base_link-base_link_inertia
+  first_joint: shoulder_pan_joint
+  ee_joint: wrist_3_joint
+  init_pose: [-0.7, -1.4, 0.8, -2.5, 0.9, -1.5]
+
+  check_limit: False
+
+  inverse_kinematics:
+    eps: 1e-4
+    max_iter: 128
+    dt: 1e-1
+    damp : 1e-12
+
+endeffector:
+  use_endeffector: True
+  init_pose:
+    "base_joint": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    "finger_joint": 0.0
+
+  directory: ./assets/endeffector/robotiq_arg85_description/robots/
+  urdf_file: robotiq_arg85_description.URDF
+
+  torch_dtype: float32
+  torch_device: 'cuda:0'
+
+  nmax_query: 500000
+  sdf_cfg:
+    use_sdf_cache: True
+    directory: ./assets/endeffector/robotiq_arg85_description/
+    sdf_file: ./.cache/sdf.npy
+
+    scan_count: 20
+    scan_resolution: 1000
+    sdf_beta: 0.1
+    sdf_gamma: 0.01
+    sdf_diff: [0.003, 0.003, 0.003]
+    
+    sdf_inf: 1e6
+
+  dx_eps: 1e-7
+  
+hydra:
+  job:
+    chdir: True
+  run:
+    dir: outputs/${now:%Y-%m-%d}/${now:%H-%M-%S.%f}
+  sweep:
+    dir: multirun/${now:%Y-%m-%d}/${now:%H-%M-%S.%f}
+    subdir: ${hydra.job.num}
+  job_logging:
+    root:
+      level: INFO
+      handlers:
+      - console
+      - file
+  

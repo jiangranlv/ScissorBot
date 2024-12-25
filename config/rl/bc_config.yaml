@@ -1,0 +1,45 @@
+PN_cfg:
+  set_abstraction1_cfg:
+    npoint: 512
+    radius_list: [0.1, 0.2, 0.4]
+    nsample_list: [8, 16, 64]
+    in_channel: 3
+    mlp_list: [[8, 8, 16], [16, 16, 32], [16, 16, 32]]
+  set_abstraction2_cfg:
+    npoint: 128
+    radius_list: [0.2, 0.4, 0.8]
+    nsample_list: [16, 32, 64]
+    in_channel: 80
+    mlp_list: [[16, 16, 32], [32, 32, 64], [32, 32, 64]]
+  set_abstraction3_cfg:
+    npoint:
+    radius:
+    nsample:
+    in_channel: 163
+    mlp: [256, 384, 512]
+    group_all: True
+  hidden_dim: [256]
+pn_output_dim: 64
+prev_action_n: 2
+posemlp_cfg:
+  hidden_dim: [64, 64]
+loss_cfg:
+  probability_weight: 1e0
+  open_close_weight: 1e0
+  translation_weight: 1e0
+  rotation_weight: 1e0
+  open_close_loss: l2
+  translation_loss: huber
+  rotation_loss: l2
+input_statistics:
+  point_cloud:
+    mean: [0.08134385, 0.0046094, 0.15284023, 0., 0., 0.]
+    std: [0.0735828, 0.0735828, 0.0735828, 1., 1., 1.]
+  scissor_pose:
+    mean: [-0.09131761, 0.02888361, 0.03622385, 0.14638498, 0.16358851, 0.0074226, 0.16835716, 0.14005724]
+    std: [0.18268688, 0.10507938, 0.12708044, 0.0675601, 0.19768135, 0.20669429, 0.6547538, 0.6439879 ]
+  action:
+    translation:
+      mean: [0.03259763, -0.00670006, 0.00247545]
+      std: [0.04390685, 0.04390685, 0.04390685]
+

@@ -1,0 +1,79 @@
+
+gym_time_step: 0.5
+pre_cut_len: 5
+  
+setup:
+  cuda: 0
+  device_memory_GB: 2
+  
+output:
+  print_info: False
+
+  models:
+    xgame:
+      cloth: False
+      scissor: False
+      robot: False
+      endeffector: False
+
+  # 'models' is a dict
+  # keys are output file names
+  # values specify which components will be exported
+  is_write_uv: False
+  uv_prefix: cloth
+  use_ascii: False
+  print_stuck: False
+
+demos:
+  constraints: top_edge
+
+env:
+  batch_size: 1
+  cut_sim:
+    frame_dt: 0.5
+
+cloth:
+  cloth_file: ./assets/vertical_a4_2_10mm.obj
+
+goal: circle_10_cuts 
+
+add_noise: False
+
+print_progress: False
+
+scissor:
+
+  # joint_1 = translation + rotation around joint_0
+  init_pose:
+    joint_0: 0.2
+    joint_1: [-0.10, 0.00, 0.25, -2.2442661674929445, 0.9023379110652896, -0.9103981633974483]
+
+robot:
+  use_robot: False
+  
+  directory: ./assets/robot/ur10e/
+  urdf_file: ur10e.urdf
+
+  ee_joint: wrist_3_joint
+  init_pose: [-0.7, -1.4, 0.8, -2.5, 0.0, -1.5]
+
+  inverse_kinematics:
+    eps: 1e-4
+    max_iter: 128
+    dt: 1e-1
+    damp : 1e-12
+
+hydra:
+  job:
+    chdir: True
+  run:
+    dir: outputs/validate_${now:%m%d}/${now:%H%M%S}
+  sweep:
+    dir: multirun/${now:%Y-%m-%d}/${now:%H-%M-%S.%f}
+    subdir: ${hydra.job.num}
+  job_logging:
+    root:
+      level: INFO
+      handlers:
+      - file
+

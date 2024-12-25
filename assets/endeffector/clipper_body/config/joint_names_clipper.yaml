@@ -1,0 +1,1 @@
+controller_joint_names: ['', 'gripper_left_joint', 'clipper_left_joint', 'clipper_revolute_joint', 'gripper_right_joint', 'clipper_right_joint', 'clipper_revolute2_joint', ]

@@ -1,0 +1,65 @@
+config_version: "2.4"
+
+gym_time_step: 1
+
+setup:
+  cuda: 0
+output:
+  print_info: False
+
+  models:
+    xgame: 
+      cloth: False
+      scissor: False
+      robot: False
+      endeffector: False
+    xgame_scissor: 
+      scissor: True
+      robot: True
+      endeffector: True
+      cloth: False
+    xgame_cloth:
+      cloth: True
+      scissor: False
+      robot: False
+      endeffector: False
+  # 'models' is a dict
+  # keys are output file names
+  # values specify which components will be exported
+  is_write_uv: True
+  uv_prefix: xgame
+  use_ascii: False
+
+goal: circle_10_cuts 
+
+add_noise: False
+
+robot:
+  use_robot: True
+  
+  directory: ./assets/robot/ur10e/
+  urdf_file: ur10e.urdf
+
+  ee_joint: wrist_3_joint
+  init_pose: [-0.7, -1.4, 0.8, -2.5, 0.0, -1.5]
+
+  inverse_kinematics:
+    eps: 1e-4
+    max_iter: 128
+    dt: 1e-1
+    damp : 1e-12
+
+hydra:
+  job:
+    chdir: True
+  run:
+    dir: outputs/${now:%Y-%m-%d}/${goal}_${now:%H%M%S}
+  sweep:
+    dir: multirun/${now:%Y-%m-%d}/${now:%H-%M-%S.%f}
+    subdir: ${hydra.job.num}
+  job_logging:
+    root:
+      level: INFO
+      handlers:
+      - file
+

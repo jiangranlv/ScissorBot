@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-1-g15f4949  Build Version: 1.6.7594.29634
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="clipper">
+  <link
+    name="clipper_link">
+    <inertial>
+      <origin
+        xyz="0.00039271 -3.2693E-06 0.031305"
+        rpy="0 0 0" />
+      <mass
+        value="0.26474" />
+      <inertia
+        ixx="9.0177E-05"
+        ixy="-6.2509E-09"
+        ixz="-1.4571E-07"
+        iyy="0.00012015"
+        iyz="-2.1137E-09"
+        izz="0.00012976" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/jiangranlv/code/cutting_paper_fem/assets/endeffector/clipper_body/meshes/clipper_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/jiangranlv/code/cutting_paper_fem/assets/endeffector/clipper_body/meshes/clipper_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="gripper_left_link">
+    <inertial>
+      <origin
+        xyz="-0.0061904 -0.0067029 1.0408E-17"
+        rpy="0 0 0" />
+      <mass
+        value="0.003954" />
+      <inertia
+        ixx="1.2851E-07"
+        ixy="-1.4783E-08"
+        ixz="-6.8432E-24"
+        iyy="1.6215E-07"
+        iyz="6.6115E-25"
+        izz="1.5904E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/jiangranlv/code/cutting_paper_fem/assets/endeffector/clipper_body/meshes/gripper_left_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/jiangranlv/code/cutting_paper_fem/assets/endeffector/clipper_body/meshes/gripper_left_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="gripper_left_joint"
+    type="fixed">
+    <origin
+      xyz="-0.017 0.009 0.099"
+      rpy="0 1.5708 0" />
+    <parent
+      link="clipper_link" />
+    <child
+      link="gripper_left_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  
+  <link
+    name="gripper_right_link">
+    <inertial>
+      <origin
+        xyz="-0.0061904 0.0067029 -4.5797E-16"
+        rpy="0 0 0" />
+      <mass
+        value="0.003954" />
+      <inertia
+        ixx="1.2851E-07"
+        ixy="1.4783E-08"
+        ixz="-1.652E-21"
+        iyy="1.6215E-07"
+        iyz="4.3323E-22"
+        izz="1.5904E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/jiangranlv/code/cutting_paper_fem/assets/endeffector/clipper_body/meshes/gripper_right_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/jiangranlv/code/cutting_paper_fem/assets/endeffector/clipper_body/meshes/gripper_right_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="gripper_right_joint"
+    type="fixed">
+    <origin
+      xyz="0.017 -0.009 0.099"
+      rpy="0 1.5708 0" />
+    <parent
+      link="clipper_link" />
+    <child
+      link="gripper_right_link" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+
+  <link
+    name="clipper_revolute_link">
+    <inertial>
+      <origin
+        xyz="-1.3564E-18 0 -0.006"
+        rpy="0 0 0" />
+      <mass
+        value="0.0023562" />
+      <inertia
+        ixx="1.9144E-07"
+        ixy="2.5849E-25"
+        ixz="-3.7275E-23"
+        iyy="1.9144E-07"
+        iyz="-3.3087E-24"
+        izz="2.9452E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/jiangranlv/code/cutting_paper_fem/assets/endeffector/clipper_body/meshes/clipper_revolute3_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/jiangranlv/code/cutting_paper_fem/assets/endeffector/clipper_body/meshes/clipper_revolute3_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="revolute_joint" type="fixed">
+    <origin xyz="0 0 0.131" rpy="-1.5708 0 0" />
+    <child link="clipper_revolute_link"/>
+    <parent link="clipper_link"/>
+  </joint>
+
+  <link name="base"/>
+  <joint name="base_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <child link="clipper_link"/>
+    <parent link="base"/>
+  </joint>
+
+</robot>

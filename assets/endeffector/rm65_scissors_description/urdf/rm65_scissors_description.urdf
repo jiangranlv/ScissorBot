@@ -1,0 +1,595 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="rm65_scissors_description">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0" />
+      <inertia
+        ixx="0"
+        ixy="0"
+        ixz="0"
+        iyy="0"
+        iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm65_scissors_description/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm65_scissors_description/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="link_l_b_1">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0" />
+      <inertia
+        ixx="0"
+        ixy="0"
+        ixz="0"
+        iyy="0"
+        iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm65_scissors_description/meshes/link_l_b_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm65_scissors_description/meshes/link_l_b_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_l_1"
+    type="revolute">
+    <origin
+      xyz="-0.04 0 0.0789999999999999"
+      rpy="0 -0.108145629654395 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="link_l_b_1" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="link_l_m">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0" />
+      <inertia
+        ixx="0"
+        ixy="0"
+        ixz="0"
+        iyy="0"
+        iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm65_scissors_description/meshes/link_l_m.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm65_scissors_description/meshes/link_l_m.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_l_3"
+    type="revolute">
+    <origin
+      xyz="0 0 0.042"
+      rpy="0 0.10815 0" />
+    <parent
+      link="link_l_b_1" />
+    <child
+      link="link_l_m" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+    <mimic
+      joint="joint_l_1"
+      multiplier="-1"
+      offset="0" />
+  </joint>
+  <link
+    name="link_l_t">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0" />
+      <inertia
+        ixx="0"
+        ixy="0"
+        ixz="0"
+        iyy="0"
+        iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm65_scissors_description/meshes/link_l_t.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm65_scissors_description/meshes/link_l_t.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_l_4"
+    type="revolute">
+    <origin
+      xyz="0.0185 0.0015 0.035"
+      rpy="0 0.36662 0" />
+    <parent
+      link="link_l_m" />
+    <child
+      link="link_l_t" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="link_l_b_2">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0" />
+      <inertia
+        ixx="0"
+        ixy="0"
+        ixz="0"
+        iyy="0"
+        iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm65_scissors_description/meshes/link_l_b_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm65_scissors_description/meshes/link_l_b_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_l_2"
+    type="revolute">
+    <origin
+      xyz="-0.03 0 0.081"
+      rpy="0 -0.10815 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="link_l_b_2" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+    <mimic
+      joint="joint_l_1"
+      multiplier="1"
+      offset="0" />
+  </joint>
+  <link
+    name="scissors_center">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0" />
+      <inertia
+        ixx="0"
+        ixy="0"
+        ixz="0"
+        iyy="0"
+        iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm65_scissors_description/meshes/scissors_center.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm65_scissors_description/meshes/scissors_center.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="scissors_fixed"
+    type="fixed">
+    <origin
+      xyz="0 0.0015 0.176"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="scissors_center" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="link_r_b_1">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0" />
+      <inertia
+        ixx="0"
+        ixy="0"
+        ixz="0"
+        iyy="0"
+        iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm65_scissors_description/meshes/link_r_b_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm65_scissors_description/meshes/link_r_b_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_r_1"
+    type="revolute">
+    <origin
+      xyz="0.04 0 0.079"
+      rpy="0 0.10815 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="link_r_b_1" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+    <mimic
+      joint="joint_l_1"
+      multiplier="1"
+      offset="0" />
+  </joint>
+  <link
+    name="link_r_m">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0" />
+      <inertia
+        ixx="0"
+        ixy="0"
+        ixz="0"
+        iyy="0"
+        iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm65_scissors_description/meshes/link_r_m.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm65_scissors_description/meshes/link_r_m.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_r_3"
+    type="revolute">
+    <origin
+      xyz="0 0 0.042"
+      rpy="0 -0.10815 0" />
+    <parent
+      link="link_r_b_1" />
+    <child
+      link="link_r_m" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+    <mimic
+      joint="joint_l_1"
+      multiplier="-1"
+      offset="0" />
+  </joint>
+  <link
+    name="link_r_t">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0" />
+      <inertia
+        ixx="0"
+        ixy="0"
+        ixz="0"
+        iyy="0"
+        iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm65_scissors_description/meshes/link_r_t.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm65_scissors_description/meshes/link_r_t.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_r_4"
+    type="revolute">
+    <origin
+      xyz="-0.0185 0 0.035"
+      rpy="0 -0.36662 0" />
+    <parent
+      link="link_r_m" />
+    <child
+      link="link_r_t" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+    <mimic
+      joint="joint_l_4"
+      multiplier="1"
+      offset="0" />
+  </joint>
+  <link
+    name="link_r_b_2">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0" />
+      <inertia
+        ixx="0"
+        ixy="0"
+        ixz="0"
+        iyy="0"
+        iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm65_scissors_description/meshes/link_r_b_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rm65_scissors_description/meshes/link_r_b_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_r_2"
+    type="revolute">
+    <origin
+      xyz="0.03 0 0.081"
+      rpy="0 0.10815 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="link_r_b_2" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+    <mimic
+      joint="joint_l_1"
+      multiplier="1"
+      offset="0" />
+  </joint>
+
+  <link name="base"/>
+  <joint name="base_joint" type="floating">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <child link="base_link"/>
+    <parent link="base"/>
+  </joint>
+</robot>
