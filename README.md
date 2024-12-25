@@ -13,7 +13,7 @@ This repository contains code for both PaperCutting-Sim environments and trainin
 
 ## Installation
 
-```console
+```
 conda create -n scissorbot python==3.8.16
 conda activate scissorbot
 python setup.py
